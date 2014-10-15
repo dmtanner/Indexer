@@ -1,0 +1,59 @@
+drop table user;
+drop table batch;
+drop table project;
+drop table field;
+drop table record;
+drop table value;
+
+
+create table user
+(
+	id integer not null primary key autoincrement,
+	username varchar(255) not null,
+	password varchar(255) not null,
+	record_count integer not null,
+	current_batch integer
+);
+
+create table batch
+(
+	id integer not null primary key autoincrement,
+	project_id integer not null,
+	image_url varchar(255) not null,
+	first_y_coord integer not null,
+	height integer not null
+);
+
+create table project
+(
+	id integer not null primary key autoincrement,
+	name varchar(255) not null
+);
+
+create table field
+(
+	id integer not null  primary key autoincrement,
+	project_id integer not null,
+	title varchar(255) not null,
+	width integer not null,
+	x_coord integer not null,
+	column integer not null,
+	help_file_url varchar(255) not null,
+	known_values_url varchar(255) not null
+);
+
+create table record
+(
+	id integer not null primary key autoincrement,
+	batch_id integer not null,
+	record_num integer not null
+);
+
+create table value
+(
+	id integer not null primary key autoincrement,
+	field_id integer not null,
+	record_id integer not null,
+	string varchar(255) not null	--actual value
+)
+
